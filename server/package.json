@@ -1,0 +1,52 @@
+{
+	"name": "server",
+	"main": "src/index.ts",
+	"type": "module",
+	"scripts": {
+		"build": "tsc && tsc-alias",
+		"check-types": "tsc --noEmit",
+		"compile": "bun build --compile --minify --sourcemap --bytecode ./src/index.ts --outfile server",
+		"dev": "bun run --watch src/index.ts",
+		"start": "bun run dist/src/index.js",
+		"db:push": "drizzle-kit push",
+		"db:studio": "drizzle-kit studio",
+		"db:generate": "drizzle-kit generate",
+		"db:migrate": "drizzle-kit migrate",
+		"check": "biome check --write .",
+		"email": "email dev --dir src/emails --port 3001",
+		"export": "email export --dir src/emails"
+	},
+	"dependencies": {
+		"@elysiajs/cors": "^1.2.0",
+		"@elysiajs/swagger": "^1.3.0",
+		"@react-email/components": "^0.0.41",
+		"better-auth": "^1.2.7",
+		"dotenv": "^16.4.7",
+		"drizzle-orm": "^0.43.1",
+		"elysia": "^1.3.1",
+		"ioredis": "^5.6.1",
+		"pg": "^8.14.1",
+		"react": "^19.1.0",
+		"react-dom": "^19.1.0",
+		"resend": "^4.5.1",
+		"zod": "^3.25.16"
+	},
+	"devDependencies": {
+		"@biomejs/biome": "1.9.4",
+		"@types/bun": "^1.2.6",
+		"@types/pg": "^8.11.11",
+		"@types/react": "^19.1.5",
+		"@types/react-dom": "^19.1.5",
+		"drizzle-kit": "^0.31.1",
+		"husky": "^9.1.7",
+		"lint-staged": "^16.0.0",
+		"react-email": "^4.0.15",
+		"tsc-alias": "^1.8.11",
+		"typescript": "^5.8.2"
+	},
+	"lint-staged": {
+		"*.{js,ts,cjs,mjs,d.cts,d.mts,jsx,tsx,json,jsonc}": [
+			"biome check --write ."
+		]
+	}
+}
